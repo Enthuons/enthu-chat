@@ -3,8 +3,8 @@ import history from '../history';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
-    domain: '',
-    clientID: '',
+    domain: 'enthu-chat.eu.auth0.com',
+    clientID: 'tagESJE1T9c73CvUeP7WlSFajyOaBgmd',
     redirectUri: 'http://localhost:3000/callback',
     logoutUrl:'https://localhost:3000/logout',
     responseType: 'token id_token',

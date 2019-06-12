@@ -10,10 +10,8 @@ import Emojify from 'react-emojione';
 import Files from 'react-files';
 import attachment from '../images/attachment.png';
 // import { API_URL } from '../uploadFile';
-const JSON = require('circular-json');
 const io = require('socket.io-client');
-const socket = io('http://192.168.0.133:8081');
-var user;
+const socket = io('http://192.168.0.156:5000');
 
 const styles = {
   getEmojiButton: {
@@ -46,7 +44,7 @@ class Input extends Component {
       images: []
     }
     socket.on('chat message', (msg) => {
-      user = {
+      const user = {
         name: msg.name,
         text: msg.message,
         id: msg.id,
@@ -86,16 +84,16 @@ class Input extends Component {
       message : this.state.text
     }
     socket.emit('chat message', msgData);
-    fetch('http://localhost/ChatAppbackend/msg_to_database.php', {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name:name,message:this.state.text,date:new Date(),file:this.state.file})
-    })
-    .then(res =>console.log("response",res))
-    .catch(e =>console.log("error",e) )
+    // fetch('http://localhost/ChatAppbackend/msg_to_database.php', {
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({name:name,message:this.state.text,date:new Date(),file:this.state.file})
+    // })
+    // .then(res =>console.log("response",res))
+    // .catch(e =>console.log("error",e) )
     this.setState({loading:true})
     this.setState({text: ""});
   } 
